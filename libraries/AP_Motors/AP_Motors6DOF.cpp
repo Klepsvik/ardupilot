@@ -225,14 +225,14 @@ void AP_Motors6DOF::output_min()
     // ToDo find a field to store the minimum pwm instead of hard coding 1500
     for (i=0; i<AP_MOTORS_MAX_NUM_MOTORS; i++) {
         if (motor_enabled[i]) {
-            rc_write(i, 1500);
+            rc_write(i, 1450);
         }
     }
 }
 
 int16_t AP_Motors6DOF::calc_thrust_to_pwm(float thrust_in) const
 {
-    return constrain_int16(1500 + thrust_in * 400, _throttle_radio_min, _throttle_radio_max);
+    return constrain_int16(1450 + thrust_in * 400, _throttle_radio_min, _throttle_radio_max);
 }
 
 void AP_Motors6DOF::output_to_motors()
@@ -246,7 +246,7 @@ void AP_Motors6DOF::output_to_motors()
         // set motor output based on thrust requests
         for (i=0; i<AP_MOTORS_MAX_NUM_MOTORS; i++) {
             if (motor_enabled[i]) {
-                motor_out[i] = 1500;
+                motor_out[i] = 1450;
             }
         }
         break;
@@ -254,7 +254,7 @@ void AP_Motors6DOF::output_to_motors()
         // sends output to motors when armed but not flying
         for (i=0; i<AP_MOTORS_MAX_NUM_MOTORS; i++) {
             if (motor_enabled[i]) {
-                motor_out[i] = 1500;
+                motor_out[i] = 1450;
             }
         }
         break;
